@@ -28,8 +28,8 @@ project_short_description:
 
 github_user:
   type: str
+  default: panel-extensions
   help: What is your GitHub username (used for CODEOWNERS)?
-  placeholder: panel-extensions
 
 author_name:
   type: str
