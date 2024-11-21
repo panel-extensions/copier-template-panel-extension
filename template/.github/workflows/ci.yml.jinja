@@ -1,3 +1,4 @@
+
 {%- raw -%}
 name: CI
 on:
@@ -5,15 +6,10 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * *'  # Runs daily at midnight UTC
-
 # Automatically stop old builds on the same branch/PR
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
 jobs:
   setup:
     name: Setup workflow
@@ -26,7 +22,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         if: github.event_name != 'pull_request'
-
       - name: Check for code changes
         uses: dorny/paths-filter@v3
         id: filter
@@ -36,7 +31,6 @@ jobs:
               - 'panel-precision-slider/**'
               - 'pyproject.toml'
               - '.github/workflows/test.yaml'
-
       - name: Set matrix option
         run: |
           if [[ '${{ github.event_name }}' == 'workflow_dispatch' ]]; then
@@ -49,7 +43,6 @@ jobs:
             OPTION="default"
           fi
           echo "MATRIX_OPTION=$OPTION" >> $GITHUB_ENV
-
       - name: Set test matrix with 'default' option
         if: env.MATRIX_OPTION == 'default'
         run: |
@@ -58,7 +51,6 @@ jobs:
               "environment": ["test-310", "test-312"],
           }')
           echo "MATRIX=$MATRIX" >> $GITHUB_ENV
-
       - name: Set test matrix with 'full' option
         if: env.MATRIX_OPTION == 'full'
         run: |
@@ -67,7 +59,6 @@ jobs:
               "environment": ["test-310", "test-311", "test-312"]
           }')
           echo "MATRIX=$MATRIX" >> $GITHUB_ENV
-
       - name: Set test matrix with 'downstream' option
         if: env.MATRIX_OPTION == 'downstream'
         run: |
@@ -91,23 +82,21 @@ jobs:
     steps:
       - name: Checkout branch
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
-
-      - name: Set up Pixi
+      - name: Set up pixi
         uses: prefix-dev/setup-pixi@ba3bb36eb2066252b2363392b7739741bb777659 # v0.8.1
         with:
           environments: default lint
-
       - name: pre-commit
         run: pixi run pre-commit-run --color=always --show-diff-on-failure
-
+{%- endraw %}
   pytest:
     timeout-minutes: 30
-    runs-on: {% if add_windows_tests_to_ci %} ${{ matrix.os }} {% else %} ubuntu-latest {% endif %}
-    needs: [pre-commit, setup, pixi_lock]
-    if: needs.setup.outputs.code_change == 'true'
+    runs-on: {% if add_windows_tests_to_ci %}{% raw %}${{ matrix.os }}{% endraw %}{% else %}ubuntu-latest{% endif %}
     strategy:
       fail-fast: false
       matrix:
+{%- set python_versions = ["py38", "py39", "py310", "py311", "py312"] %}
+{%- set minimal_version_index = python_versions.index(minimal_python_version) %}
         environment:
         {%- for python_version in python_versions[minimal_version_index:] %}
           - {{ python_version }}
@@ -115,43 +104,31 @@ jobs:
         os:
           - ubuntu-latest
           - macos-latest
-          {% if add_windows_tests_to_ci %}
-          - windows-latest
-          {% endif %}
-    env:
-      PANEL_LOG_LEVEL: info
+          - windows-latest{% raw %}
     steps:
       - name: Checkout branch
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
         with:
           fetch-depth: 0
-
-      - name: Set up Pixi
+      - name: Set up pixi
         uses: prefix-dev/setup-pixi@ba3bb36eb2066252b2363392b7739741bb777659 # v0.8.1
         with:
           environments: ${{ matrix.environment }}
-
       - name: Install repository
         run: pixi run -e ${{ matrix.environment }} postinstall
-
       - name: Run pytest
         run: pixi run -e ${{ matrix.environment }} test-coverage --color=yes
 
   pytest_ui:
     name: ui:${{ matrix.environment }}:${{ matrix.os }}
     needs: [pre-commit, setup, pixi_lock]
-    runs-on: {% if add_windows_tests_to_ci %} ${{ matrix.os }} {% else %} ubuntu-latest {% endif %}
+    runs-on: ${{ matrix.os }}
     if: needs.setup.outputs.code_change == 'true'
     strategy:
       fail-fast: false
       matrix:
-        environment:
-        {%- if enable_ui_tests %}
-          - test-ui
-        {%- endif %}
-        os:
-          - ubuntu-latest
-          - macos-latest
+        environment: ["test-ui"]
+        os: ["ubuntu-latest", "macos-latest", "windows-latest"]
     timeout-minutes: 60
     env:
       PANEL_LOG_LEVEL: info
@@ -164,14 +141,14 @@ jobs:
       - name: Set up Pixi
         uses: prefix-dev/setup-pixi@v0.8.1
         with:
-          environments: ${{ matrix.environment }}
+          environments: ${{ matrix.environment }}{% endraw %}
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # You can parameterize this if needed
+          python-version: '{{ minimal_python_version }}'
 
-      - name: Install Dependencies
+      - name: Install Dependencies{% raw %}
         run: |
           pixi run -e ${{ matrix.environment }} postinstall
 
@@ -195,4 +172,4 @@ jobs:
           name: ui_screenshots_${{ runner.os }}
           path: ./ui_screenshots
           if-no-files-found: ignore
-{%- endraw -%}
+{%- endraw %}

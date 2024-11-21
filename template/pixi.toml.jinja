@@ -80,6 +80,11 @@ _install-ui = 'playwright install chromium'
 cmd = 'pytest tests/ui --ui --browser chromium -n logical --dist loadgroup --reruns 3 --reruns-delay 10'
 depends_on = ["_install-ui"]
 
+[feature.docs.dependencies]
+mkdocs = "*"
+mkdocs-material = "*"
+mkdocstrings[python] = "*"
+
 [environments]
 default = ["test"]
 {%- if minimal_python_version_sortable <= "py308" %}
