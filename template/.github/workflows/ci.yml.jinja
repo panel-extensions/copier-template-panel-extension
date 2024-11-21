@@ -28,9 +28,9 @@ jobs:
         with:
           filters: |
             code:
-              - 'panel-precision-slider/**'
+              - 'src/**'
               - 'pyproject.toml'
-              - '.github/workflows/test.yaml'
+              - '.github/workflows/ci.yaml'
       - name: Set matrix option
         run: |
           if [[ '${{ github.event_name }}' == 'workflow_dispatch' ]]; then
