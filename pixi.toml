@@ -1,0 +1,55 @@
+[project]
+name = "copier-template-python-open-source"
+description = "Copier template for python projects using pixi"
+channels = ["conda-forge"]
+platforms = ["linux-64", "osx-arm64", "osx-64", "win-64"]
+
+[dependencies]
+python = ">=3.12"
+copier = ">=9.3.1,<10"
+pytest = ">=8.2,<9"
+"ruamel.yaml" = "*"
+mypy = "*"
+pre-commit = "*"
+gh = "*"
+go-yq = "*"
+
+[tasks]
+test = "pytest"
+generate-temp-repo = """
+export COPIER_PATH="$(mktemp -d)" && \
+copier copy --trust --vcs-ref=HEAD . "$COPIER_PATH" && \
+echo "Generated repo to $COPIER_PATH"
+"""
+
+[feature.lint.dependencies]
+pre-commit = "*"
+insert-license-header = "*"
+docformatter = "*"
+ruff = "*"
+prettier = "*"
+taplo = "*"
+pre-commit-hooks = "*"
+typos = "*"
+
+[feature.lint.tasks]
+pre-commit-install = "pre-commit install"
+pre-commit-run = "pre-commit run -a"
+
+[feature.test-ui]
+channels = ["microsoft"]
+
+[feature.test-ui.dependencies]
+playwright = { version = "*", channel = "microsoft" }
+pytest-playwright = { version = "*", channel = "microsoft" }
+
+[feature.test-ui.tasks]
+_install-ui = 'playwright install chromium'
+
+[feature.test-ui.tasks.test-ui]
+cmd = 'pytest tests/ui --ui --browser chromium'
+depends_on = ["_install-ui"]
+
+[environments]
+default = []
+lint = { features = ["lint"], no-default-feature = true }

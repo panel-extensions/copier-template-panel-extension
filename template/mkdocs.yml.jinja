@@ -1,0 +1,60 @@
+site_name: {{ project_slug }}
+site_description: {{ project_short_description }}
+site_author: {{ author_name }}
+
+repo_url: {{ github_url }}
+repo_name: {{ github_user }}/{{ project_slug }}
+
+theme:
+    name: material
+    logo: 'assets/logo.svg'
+    features:
+        - content.copy.code
+    palette:
+        # Palette toggle for light mode
+        - media: "(prefers-color-scheme: light)"
+          scheme: default
+          primary: white
+          accent: blue
+          toggle:
+            icon: material/brightness-7
+            name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: slate
+          primary: black
+          accent: blue
+          toggle:
+            icon: material/brightness-4
+            name: Switch to light mode
+
+markdown_extensions:
+    - toc:
+        permalink: true
+    - pymdownx.highlight:
+        anchor_linenums: true
+    - pymdownx.tasklist:
+        custom_checkbox: true
+    - pymdownx.inlinehilite
+    - pymdownx.snippets
+    - pymdownx.superfences
+    - admonition
+
+plugins:
+  - search
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            docstring_style: google
+            show_if_no_docstring: true
+            filters:
+            - "!^_"
+
+watch:
+    - docs
+
+nav:
+    - Home: index.md
+    - Reference: reference/{{ project_slug_snake_case }}.md

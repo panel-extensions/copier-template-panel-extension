@@ -1,0 +1,56 @@
+name: Autoupdate
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: 0 6 * * *
+
+jobs:
+  update:
+    name: Update ${{ matrix.name }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - script: update_actions
+            name: gh-actions
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938 # v4.2.0
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@ba3bb36eb2066252b2363392b7739741bb777659 # v0.8.1
+        with:
+          activate-environment: true
+      - name: Update ${{ matrix.name }}
+        run: python -m scripts.${{ matrix.script }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+      - uses: peter-evans/create-pull-request@5e914681df9dc83aa4e4905692ca88beb2f9e91f # v7.0.5
+        with:
+          commit-message: Auto-update ${{ matrix.name }}
+          title: Auto-update ${{ matrix.name }}
+          body: |
+            New versions of pinned dependencies in ${{ matrix.name }} were detected.
+            This PR updates them to the latest version.
+          branch: update-${{ matrix.name }}
+          delete-branch: true
+      - name: Create issue on failure
+        if: failure()
+        uses: actions/github-script@60a0d83039c74a4aee543508d2ffcb1c3799cdea # v7.0.1
+        with:
+          script: |
+            github.rest.issues.listForRepo({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: "open",
+              labels: "[bot] autoupdate"
+            }).then((issues) => {
+              if (issues.data.length === 0) {
+                github.rest.issues.create({
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  title: "${{ matrix.name }} update failed",
+                  body: "See https://github.com/quantco/copier-template-python-open-source/actions/runs/${{ github.run_id }} for details.",
+                  labels: ["[bot] autoupdate"]
+                })
+              }
+            });

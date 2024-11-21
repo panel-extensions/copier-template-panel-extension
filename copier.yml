@@ -1,0 +1,78 @@
+# configuration
+_subdirectory: template
+_preserve_symlinks: True
+_min_copier_version: "9.3.1"
+
+# questions
+project_slug:
+  type: str
+  help: What is your project slug (i.e. pypi package name)?
+  placeholder: panel-<your_extension_name>
+  validator: >-
+    {% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}
+    The project slug should not contain underscores, spaces or dots.
+    {% endif %}
+    {% if not project_slug.startswith('panel-') %}
+    The project slug should start with `panel-`.
+    {% endif %}
+
+project_slug_snake_case:
+  type: str
+  default: "{{ project_slug.replace('-', '_') }}"
+  when: false
+
+project_short_description:
+  type: str
+  help: Enter a short description.
+  placeholder: Extends HoloViz Panel with a <your_extension_name> pane/widget/...
+
+github_user:
+  type: str
+  help: What is your GitHub username (used for CODEOWNERS)?
+  placeholder: panel-extensions
+
+author_name:
+  type: str
+  help: What is your name (used for package author)?
+
+author_email:
+  type: str
+  help: What is your email (used for package author)?
+
+github_url:
+  type: str
+  help: What is the GitHub url of this project?
+  default: https://github.com/{{ github_user }}/{{ project_slug }}
+  validator: >-
+    {% if not github_url.startswith('https://github.com/') or github_url.endswith('.git') %}
+    The GitHub URL should start with `https://github.com/` and not end with `.git`, for example `https://github.com/LandoCalrissian/python-project`.
+    {% endif %}
+
+docs_url:
+  type: str
+  help: What is the URL of the documentation of this project?
+  default: "https://{{ github_user }}.github.io/{{ project_slug }}/"
+
+minimal_python_version:
+  type: str
+  help: What is the minimal Python version you want to support?
+  choices:
+    - py310
+    - py311
+    - py312
+    - py313
+  default: py310
+
+minimal_python_version_sortable:
+  type: str
+  default: "{{ minimal_python_version.replace('py38', 'py308').replace('py39', 'py309') }}"
+  when: false
+
+add_autobump_workflow:
+  type: bool
+  help: Do you want to add a GitHub Workflow to automatically bump `pixi.lock`?
+  default: true
+
+_tasks:
+  - '"{{ _copier_python }}" -I -c "import sys; sys.path.insert(0, \"{{ _copier_conf.src_path }}\"); import runpy;
+    runpy.run_module(\"tasks\", run_name=\"__main__\")"'

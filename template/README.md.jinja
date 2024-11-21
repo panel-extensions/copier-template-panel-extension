@@ -1,0 +1,55 @@
+```jinja2
+# {{ project_slug }}
+
+[![CI](https://img.shields.io/github/actions/workflow/status/{{ github_url[19:] }}/ci.yml?style=flat-square&branch=main)]({{ github_url }}/actions/workflows/ci.yml)
+[![conda-forge](https://img.shields.io/conda/vn/conda-forge/{{ project_slug }}?logoColor=white&logo=conda-forge&style=flat-square)](https://prefix.dev/channels/conda-forge/packages/{{ project_slug }})
+[![pypi-version](https://img.shields.io/pypi/v/{{ project_slug }}.svg?logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/{{ project_slug }})
+[![python-version](https://img.shields.io/pypi/pyversions/{{ project_slug }}?logoColor=white&logo=python&style=flat-square)](https://pypi.org/project/{{ project_slug }})
+
+{%- if project_short_description %}
+{{ project_short_description }}
+{%- endif %}
+
+## Features
+
+{{ project_slug }}
+
+## Installation
+
+Install it via `pip`:
+
+```bash
+pip install {{ project_slug }}
+```
+
+## Development
+
+This project is managed by [pixi](https://pixi.sh).
+You can install the package in development mode using:
+
+```bash
+git clone {{ github_url }}
+cd {{ project_slug }}
+
+pixi run pre-commit-install
+pixi run postinstall
+pixi run test
+```
+
+## Usage
+
+```python
+import {{ project_slug_snake_case }}
+```
+
+## Contributing
+
+Contributions are welcome! Please follow these steps to contribute:
+
+1. Fork the repository.
+2. Create a new branch: `git checkout -b feature/YourFeature`.
+3. Make your changes and commit them: `git commit -m 'Add some feature'`.
+4. Push to the branch: `git push origin feature/YourFeature`.
+5. Open a pull request.
+
+Please ensure your code adheres to the project's coding standards and passes all tests.

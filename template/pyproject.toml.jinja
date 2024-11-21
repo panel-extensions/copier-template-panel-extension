@@ -1,0 +1,149 @@
+[build-system]
+requires = [
+    "hatchling",
+    "hatch-vcs",
+    "panel>=1.5.0",
+    "packaging",
+]
+build-backend = "hatchling.build"
+
+
+[tool.setuptools_scm]
+version_scheme = "post-release"
+
+[project]
+name = "{{ project_slug }}"
+dynamic = ["version"]
+description = '{{ project_short_description }}'
+readme = "README.md"
+license = { text = "BSD" }
+requires-python = ">={{ minimal_python_version[2:].replace('3', '3.') }}"
+authors = [{ name = "{{ author_name }}", email = "{{ author_email }}" }]
+maintainers = [
+    { name = "{{ author_name }}", email = "{{ author_email }}" },
+]
+classifiers = [
+    "License :: OSI Approved :: BSD License",
+    "Development Status :: 5 - Production/Stable",
+    "Programming Language :: Python :: 3",
+    {%- if minimal_python_version_sortable <= "py310" %}
+    "Programming Language :: Python :: 3.10",
+    {%- endif %}
+    {%- if minimal_python_version_sortable <= "py311" %}
+    "Programming Language :: Python :: 3.11",
+    {%- endif %}
+    {%- if minimal_python_version_sortable <= "py312" %}
+    "Programming Language :: Python :: 3.12",
+    {%- endif %}
+    {%- if minimal_python_version_sortable <= "py313" %}
+    "Programming Language :: Python :: 3.13",
+    {%- endif %}
+    "Operating System :: OS Independent",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Natural Language :: English",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries",
+]
+
+dependencies = [
+    'panel >=1.5.0',
+    'packaging',
+]
+
+[project.urls]
+Homepage = "{{ github_url }}"
+Source = "{{ github_url }}"
+
+[project.optional-dependencies]
+dev = [
+    'watchfiles',
+    'mkdocs-material',
+    'mkdocstrings[python]',
+    'pytest',
+    'pytest-asyncio',
+    'pytest-rerunfailures',
+    'pytest-xdist',
+]
+mypy = [
+    "mypy",
+    "types-requests",
+    "typing-extensions",
+]
+
+[tool.ruff]
+exclude = [
+    ".git",
+    "__pycache__",
+    ".tox",
+    ".eggs",
+    "*.egg",
+    "doc",
+    "dist",
+    "build",
+    "_build",
+    "examples",
+    ".ipynb_checkpoints",
+    "node_modules",
+]
+line-length = 165
+fix = true
+
+[tool.ruff.lint]
+ignore = [
+    "E402",  # Module level import not at top of file
+    "E712",  # Avoid equality comparisons to True
+    "E731",  # Do not assign a lambda expression, use a def
+    "N803",  # Argument name should be lowercase
+    "N806",  # Variable name should be lowercase
+]
+select = [
+    "B",    # flake8-bugbear
+    "E",    # pycodestyle errors
+    "F",    # pyflakes
+    "W",    # pycodestyle warnings
+    "I",    # isort
+    "PIE",
+    "T20",
+    "RUF006",
+    "UP004",
+    "UP006",
+    "UP020",
+    "UP028",
+    "UP030",
+    "UP031",
+    "UP032",
+    "UP034",
+    "UP036",
+]
+
+[tool.pytest.ini_options]
+addopts = "--pyargs --doctest-ignore-import-errors --color=yes"
+norecursedirs = "doc .git dist build _build .ipynb_checkpoints examples"
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+xfail_strict = true
+minversion = "7"
+log_cli_level = "INFO"
+filterwarnings = [
+    "error",
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning",
+]
+testpaths = ["tests"]
+
+[tool.isort]
+force_grid_wrap = 4
+multi_line_output = 5
+combine_as_imports = true
+lines_between_types = 1
+include_trailing_comma = true
+
+[tool.mypy]
+python_version = '{{ minimal_python_version[2:].replace('3', '3.') }}'
+no_implicit_optional = true
+check_untyped_defs = true
+
+[tool.hatch.version]
+source = "vcs"
+raw-options = { version_scheme = "no-guess-dev" }
