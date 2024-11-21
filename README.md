@@ -20,7 +20,7 @@ For more on pixi, see the [documentation here](https://pixi.sh).
 To create a new Panel extension:
 
 ```bash
-pixi exec --spec copier --spec ruamel.yaml -- copier copy --trust https://github.com/ahuang11/copier-template-python-open-source <panel-extension-name>
+pixi exec --spec copier --spec ruamel.yaml -- copier copy --trust https://github.com/panel-extensions/copier-template-panel-extension <panel-extension-name>
 ```
 
 To update to a newer template version:
