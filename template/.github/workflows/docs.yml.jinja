@@ -36,7 +36,7 @@ jobs:
           environments: docs
 
       - name: Build documentation
-        run: pixi run docs-build
+        run: pixi run -e docs docs-build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
