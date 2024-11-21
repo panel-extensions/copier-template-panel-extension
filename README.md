@@ -39,6 +39,10 @@ Enable GitHub Pages through Settings > Pages on the GitHub toolbar:
 
 <img width="801" alt="image" src="https://github.com/ahuang11/cookiecutter-hipster-pypackage/assets/15331990/accd33a5-dc64-4df1-a009-07a3eed0bc38">
 
+On your GitHub repo's sidebar's About section, be sure to add the link to your docs page and some tags!
+
+If your docs page is missing a sidebar, remember to add imports to `src/__init__.py` and add them to `__all__`!
+
 ### Step 3 - Link to PyPi
 
 Head over to https://pypi.org/manage/account/publishing and fill out the form:
