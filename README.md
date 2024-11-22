@@ -37,7 +37,7 @@ Note: `copier` will show `Conflict` for files with manual changes during an upda
 
 Enable GitHub Pages through Settings > Pages on the GitHub toolbar:
 
-<img width="801" alt="image" src="https://github.com/ahuang11/cookiecutter-hipster-pypackage/assets/15331990/accd33a5-dc64-4df1-a009-07a3eed0bc38">
+<img width="710" alt="image" src="https://github.com/user-attachments/assets/790f4a3e-31ca-42d7-b36e-27e794a504d1">
 
 On your GitHub repo's sidebar's About section, be sure to add the link to your docs page and some tags!
 
@@ -47,12 +47,13 @@ If your docs page is missing a sidebar, remember to add imports to `src/__init__
 
 Head over to https://pypi.org/manage/account/publishing and fill out the form:
 
-<img width="813" alt="image" src="https://github.com/user-attachments/assets/8f3a5aad-1394-4d74-a4fc-cbefb18777ff">
+<img width="797" alt="image" src="https://github.com/user-attachments/assets/69ea7626-a2df-4fbe-a1d4-d20eb5e0cdd7">
 
 #### Step 4 - Release with a tag
 
 Now, when you've populated the template, you can release to PyPi by making a tag!
 
-<img width="1169" alt="image" src="https://github.com/ahuang11/cookiecutter-hipster-pypackage/assets/15331990/7820461a-d559-4018-b50c-c77a612cb81d">
+![image](https://github.com/user-attachments/assets/970fe011-2ca4-4018-b541-478ac76d3185)
 
-<img width="938" alt="image" src="https://github.com/ahuang11/cookiecutter-hipster-pypackage/assets/15331990/3ac62bd3-8a1f-47c1-80c9-109db0b9a0ba">
+![image](https://github.com/user-attachments/assets/374cd1ec-b1ea-4aef-b1a7-b2818660b0e8)
+
