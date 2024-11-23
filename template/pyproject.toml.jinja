@@ -93,6 +93,8 @@ fix = true
 
 [tool.ruff.lint]
 ignore = [
+    "D203", # one-blank-line-before-class and `no-blank-line-before-class` (D211) are incompatible.
+    "D212", # multi-line-summary-first-line. Alternative is to ignore D213 `multi-line-summary-second-line
     "E402",  # Module level import not at top of file
     "E712",  # Avoid equality comparisons to True
     "E731",  # Do not assign a lambda expression, use a def
