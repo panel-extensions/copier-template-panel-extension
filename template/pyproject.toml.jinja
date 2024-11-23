@@ -101,6 +101,7 @@ ignore = [
 ]
 select = [
     "B",    # flake8-bugbear
+    "D",    # pydocstyle
     "E",    # pycodestyle errors
     "F",    # pyflakes
     "W",    # pycodestyle warnings
@@ -118,6 +119,9 @@ select = [
     "UP034",
     "UP036",
 ]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
 
 [tool.pytest.ini_options]
 addopts = "--pyargs --doctest-ignore-import-errors --color=yes"
