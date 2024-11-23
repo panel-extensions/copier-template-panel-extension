@@ -1,3 +1,4 @@
+"""Shared test configuration and fixtures."""
 import subprocess
 from itertools import chain
 from pathlib import Path

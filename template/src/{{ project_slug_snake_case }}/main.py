@@ -1,1 +1,1 @@
-import panel as pn
+"""Main module."""
