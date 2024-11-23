@@ -14,15 +14,14 @@ repos:
         exclude: \.min\.js$
       - id: trailing-whitespace
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.0
+    rev: v0.8.0
     hooks:
+      # Run the linter.
       - id: ruff
-        files: panel/
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        name: isort (python)
+        args: [ --fix ]
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [ python, pyi ]
   - repo: https://github.com/hoxbro/clean_notebook
     rev: v0.1.15
     hooks:
