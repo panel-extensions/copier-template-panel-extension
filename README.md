@@ -33,17 +33,33 @@ pixi exec --spec copier --spec ruamel.yaml -- copier update --defaults --trust
 
 Note: `copier` will show `Conflict` for files with manual changes during an update. This is normal. As long as there are no merge conflict markers, all patches applied cleanly.
 
-### Step 2 - Set Up GitHub Pages Docs
+### Step 2 - Create and Add Remote Repository
+
+Go to Github and create your repository with the <panel-extension-name>. Then set the remote:
+
+```bash
+git remote add origin https://github.com/<github-user>/<panel-extension-name>.git
+```
+
+The push your new repository
+
+```bash
+git push --set-upstream origin main
+```
+
+### Step 3 - Set Up GitHub Pages Docs
 
 Enable GitHub Pages through **Settings > Pages** on the GitHub toolbar:
 
 <img width="710" alt="image" src="https://github.com/user-attachments/assets/790f4a3e-31ca-42d7-b36e-27e794a504d1">
 
-On your GitHub repo's **About** section in the sidebar, be sure to add the link to your docs page and some tags!
+On your GitHub repo's **About** section in the sidebar, be sure to add the link to your docs page:
+
+https://<github-user>.github.io/<panel-extension-name>/
 
 If your docs page is missing a sidebar, remember to add imports to `src/__init__.py` and include them in `__all__`.
 
-### Step 3 - Link to PyPI
+### Step 4 - Link to PyPI
 
 Head over to [PyPI](https://pypi.org/manage/account/publishing) and fill out the form:
 
