@@ -140,13 +140,6 @@ filterwarnings = [
 ]
 testpaths = ["tests"]
 
-[tool.isort]
-force_grid_wrap = 4
-multi_line_output = 5
-combine_as_imports = true
-lines_between_types = 1
-include_trailing_comma = true
-
 [tool.mypy]
 python_version = '{{ minimal_python_version[2:].replace('3', '3.') }}'
 no_implicit_optional = true

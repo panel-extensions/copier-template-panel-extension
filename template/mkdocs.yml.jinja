@@ -9,7 +9,7 @@ theme:
     name: material
     logo: 'assets/logo.svg'
     features:
-        - content.copy.code
+        - content.code.copy
     palette:
         # Palette toggle for light mode
         - media: "(prefers-color-scheme: light)"
@@ -46,6 +46,8 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
+          paths:
+            - src
           options:
             docstring_style: numpy
             show_if_no_docstring: true
