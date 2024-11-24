@@ -47,13 +47,14 @@ plugins:
       handlers:
         python:
           options:
-            docstring_style: google
+            docstring_style: numpy
             show_if_no_docstring: true
             filters:
             - "!^_"
 
 watch:
     - docs
+    - src/{{ project_slug_snake_case }}
 
 nav:
     - Home: index.md
