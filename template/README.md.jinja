@@ -13,12 +13,22 @@
 
 {{ project_slug }}
 
+## Pin your version!
+
+This project is **in its early stages**, so if you find a version that suits your needs, it’s recommended to **pin your version**, as updates may introduce changes.
+
 ## Installation
 
 Install it via `pip`:
 
 ```bash
 pip install {{ project_slug }}
+```
+
+## Usage
+
+```python
+import {{ project_slug_snake_case }}
 ```
 
 ## Development
@@ -33,12 +43,6 @@ cd {{ project_slug }}
 pixi run pre-commit-install
 pixi run postinstall
 pixi run test
-```
-
-## Usage
-
-```python
-import {{ project_slug_snake_case }}
 ```
 
 ## ❤️ Contributing
