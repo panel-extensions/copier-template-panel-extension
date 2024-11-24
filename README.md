@@ -25,14 +25,6 @@ To create a new Panel extension:
 pixi exec --spec copier --spec ruamel.yaml -- copier copy --trust https://github.com/panel-extensions/copier-template-panel-extension <panel-extension-name>
 ```
 
-To update to a newer template version:
-
-```bash
-pixi exec --spec copier --spec ruamel.yaml -- copier update --defaults --trust
-```
-
-Note: `copier` will show `Conflict` for files with manual changes during an update. This is normal. As long as there are no merge conflict markers, all patches applied cleanly.
-
 ### Step 2 - Create and Add Remote Repository
 
 Go to Github and create your repository with the <panel-extension-name>. Then set the remote:
@@ -72,3 +64,13 @@ Once you've populated the template, you can release to PyPI by creating a tag!
 ![image](https://github.com/user-attachments/assets/970fe011-2ca4-4018-b541-478ac76d3185)
 
 ![image](https://github.com/user-attachments/assets/374cd1ec-b1ea-4aef-b1a7-b2818660b0e8)
+
+## Updating the Template
+
+To update to the latest template version run:
+
+```bash
+pixi exec --spec copier --spec ruamel.yaml -- copier update --defaults --trust
+```
+
+Note: `copier` will show `Conflict` for files with manual changes during an update. This is normal. As long as there are no merge conflict markers, all patches applied cleanly.

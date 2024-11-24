@@ -33,17 +33,37 @@ import {{ project_slug_snake_case }}
 
 ## Development
 
-This project is managed by [pixi](https://pixi.sh).
-You can install the package in development mode using:
-
 ```bash
 git clone {{ github_url }}
 cd {{ project_slug }}
+```
 
+For a simple setup use [`uv`](https://docs.astral.sh/uv/):
+
+```bash
+uv venv
+source .venv/bin/activate # on linux. Similar commands for windows and osx
+uv pip install -e .[dev]
+pre-commit run install
+pytest tests
+```
+
+For the full Github Actions setup use [pixi](https://pixi.sh):
+
+```bash
 pixi run pre-commit-install
 pixi run postinstall
 pixi run test
 ```
+
+This repository is based on [copier-template-panel-extension](https://github.com/panel-extensions/copier-template-panel-extension).
+To update to the latest template version run:
+
+```bash
+pixi exec --spec copier --spec ruamel.yaml -- copier update --defaults --trust
+```
+
+Note: `copier` will show `Conflict` for files with manual changes during an update. This is normal. As long as there are no merge conflict markers, all patches applied cleanly.
 
 ## ❤️ Contributing
 
