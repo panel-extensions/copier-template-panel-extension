@@ -15,6 +15,7 @@ optional_markers = {
 
 
 def pytest_addoption(parser):
+    """Add extra command line options."""
     for marker, info in optional_markers.items():
         parser.addoption(
             f"--{marker}", action="store_true", default=False, help=info["help"]
@@ -25,6 +26,7 @@ def pytest_addoption(parser):
 
 
 def pytest_configure(config):
+    """Add extra markers."""
     for marker, info in optional_markers.items():
         config.addinivalue_line(
             "markers", "{}: {}".format(marker, info["marker-descr"])
@@ -37,9 +39,7 @@ def pytest_configure(config):
 
 @pytest.fixture(autouse=True)
 def module_cleanup():
-    """
-    Cleanup Panel extensions after each test.
-    """
+    """Cleanup Panel extensions after each test."""
     from bokeh.core.has_props import _default_resolver
     from panel.reactive import ReactiveMetaBase
 
@@ -53,9 +53,7 @@ def module_cleanup():
 
 @pytest.fixture(autouse=True)
 def server_cleanup():
-    """
-    Clean up server state after each test.
-    """
+    """Clean up server state after each test."""
     try:
         yield
     finally:
@@ -67,6 +65,7 @@ def server_cleanup():
 
 @pytest.fixture(autouse=True)
 def cache_cleanup():
+    """Clean up cache."""
     state.clear_caches()
     Design._resolve_modifiers.cache_clear()
     Design._cache.clear()
