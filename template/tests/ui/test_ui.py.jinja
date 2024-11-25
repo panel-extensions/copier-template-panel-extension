@@ -1,3 +1,4 @@
+"""UI Test Module."""
 # import time
 
 import pytest
@@ -12,9 +13,7 @@ pytestmark = pytest.mark.ui
 
 
 def test_param_defer_load(page):
-    """
-    Example of a UI test using Playwright.
-    """
+    """Example of a UI test using Playwright."""
     # def defer_load():
     #     time.sleep(0.5)
     #     return "I render after load!"
