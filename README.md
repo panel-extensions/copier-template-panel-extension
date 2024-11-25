@@ -57,7 +57,7 @@ Head over to [PyPI](https://pypi.org/manage/account/publishing) and fill out the
 
 <img width="797" alt="image" src="https://github.com/user-attachments/assets/69ea7626-a2df-4fbe-a1d4-d20eb5e0cdd7">
 
-### Step 4 - Release with a Tag
+### Step 5 - Release with a Tag
 
 Once you've populated the template, you can release to PyPI by creating a tag!
 
