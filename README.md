@@ -43,7 +43,7 @@ git push --set-upstream origin main
 
 Enable GitHub Pages through **Settings > Pages** on the GitHub toolbar:
 
-<img width="710" alt="image" src="https://private-user-images.githubusercontent.com/42288570/389284308-9bd345e5-7f3f-47c6-80e9-719063396f27.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3MzI0NjE5NTAsIm5iZiI6MTczMjQ2MTY1MCwicGF0aCI6Ii80MjI4ODU3MC8zODkyODQzMDgtOWJkMzQ1ZTUtN2YzZi00N2M2LTgwZTktNzE5MDYzMzk2ZjI3LnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNDExMjQlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjQxMTI0VDE1MjA1MFomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWY2ZTZjM2ZlOGFjMjBjNWM2YmRkZjE4ZjNkMzMyZjczMDVkOGFiMWM3NTA1OTVmZTY4NzE3NTdmZDE1NTM4ODImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.rj-hZ-dWRsQUgaE4FYd2H9VBdK7UyBC09zt2P8PAv_c">
+<img width="710" alt="image" src="assets/review-feedback.png">
 
 On your GitHub repo's **About** section in the sidebar, be sure to add the link to your docs page:
 
