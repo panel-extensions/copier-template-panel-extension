@@ -45,7 +45,9 @@ Enable GitHub Pages through **Settings > Pages** on the GitHub toolbar:
 
 <img width="710" alt="image" src="assets/review-feedback.png">
 
-On your GitHub repo's **About** section in the sidebar, be sure to add the link to your docs page:
+On your GitHub repo's **About** section in the sidebar, be sure to add the link to your docs page by toggling the checkbox:
+
+![image](https://github.com/user-attachments/assets/69d70fee-ec96-47bb-87df-08f866b61f5f)
 
 https://<github-user>.github.io/<panel-extension-name>/
 
