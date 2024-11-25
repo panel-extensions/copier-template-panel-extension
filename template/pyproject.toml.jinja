@@ -124,6 +124,8 @@ select = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+[tool.ruff.lint.isort]
+force-single-line = true
 
 [tool.pytest.ini_options]
 addopts = "--pyargs --doctest-ignore-import-errors --color=yes"

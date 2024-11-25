@@ -16,12 +16,16 @@ repos:
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.8.0
     hooks:
-      # Run the linter.
+      # Run the import sorter.
       - id: ruff
-        args: [ --fix ]
+        args: ["check", "--select", "I", "--fix"]
+        files: "^src/"
       # Run the formatter.
       - id: ruff-format
         types_or: [ python, pyi ]
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
   - repo: https://github.com/hoxbro/clean_notebook
     rev: v0.1.15
     hooks:
