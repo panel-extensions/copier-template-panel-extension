@@ -26,6 +26,7 @@ repos:
       # Run the linter.
       - id: ruff
         args: [ --fix ]
+        files: "^src/"
   - repo: https://github.com/hoxbro/clean_notebook
     rev: v0.1.15
     hooks:
