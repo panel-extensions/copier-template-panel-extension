@@ -17,7 +17,7 @@ def update_workflow_actions(file_path: Path):
             action_with_rest = line.split(":")[1].strip()
             action, current_sha_with_version = action_with_rest.split("@")
             try:
-               current_sha, current_version = current_sha_with_version.split("#")
+                current_sha, current_version = current_sha_with_version.split("#")
             except ValueError:
                 current_sha = ""
                 current_version = current_sha_with_version
