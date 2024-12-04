@@ -18,7 +18,7 @@ def generate_project(tmp_path):
             extra_data = {}
 
         data = {
-            "project_slug": "project",
+            "project_slug": "panel-project",
             "project_short_description": "A test project",
             "github_user": "LandoCalrissian",
             "author_name": "Lando Calrissian",
@@ -49,7 +49,7 @@ def generate_project(tmp_path):
     return _generate
 
 
-@pytest.fixture(params=["project", "my-project"])
+@pytest.fixture(params=["panel-project", "panel-my-project"])
 def project_slug(request):
     return request.param
 

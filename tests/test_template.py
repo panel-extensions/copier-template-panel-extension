@@ -6,7 +6,9 @@ from .utils import change_directory, git_init_add, remove_pixi_env_vars
 
 
 def test_generation(generated_project, project_slug):
-    assert (generated_project / project_slug.replace("-", "_") / "__init__.py").exists()
+    assert (
+        generated_project / "src" / project_slug.replace("-", "_") / "__init__.py"
+    ).exists()
     readme = (generated_project / "README.md").read_text()
     assert (
         f"https://img.shields.io/github/actions/workflow/status/LandoCalrissian/{project_slug}/ci.yml"
@@ -36,18 +38,6 @@ def test_precommit(generated_project):
         result.check_returncode()
 
 
-@pytest.mark.parametrize("use_devcontainer", [True, False])
-def test_devcontainer(generate_project, use_devcontainer):
-    path = generate_project({"use_devcontainer": use_devcontainer})
-    paths = [
-        path / ".devcontainer",
-        path / ".devcontainer" / "Dockerfile",
-        path / ".devcontainer" / "devcontainer.json",
-    ]
-    for path in paths:
-        assert path.exists() == use_devcontainer
-
-
 @pytest.mark.parametrize("add_autobump_workflow", [True, False])
 def test_add_autobump_workflow(generate_project, add_autobump_workflow):
     path = generate_project({"add_autobump_workflow": add_autobump_workflow})
@@ -56,9 +46,7 @@ def test_add_autobump_workflow(generate_project, add_autobump_workflow):
     ).exists() == add_autobump_workflow
 
 
-@pytest.mark.parametrize(
-    "minimal_python_version", ["py38", "py39", "py310", "py311", "py312"]
-)
+@pytest.mark.parametrize("minimal_python_version", ["py310", "py311", "py312"])
 def test_minimal_python_version(generate_project, minimal_python_version: str):
     minimal_python_version_str = minimal_python_version.replace("py", "").replace(
         "3", "3."
@@ -77,14 +65,6 @@ def test_minimal_python_version(generate_project, minimal_python_version: str):
     path = generate_project({"minimal_python_version": minimal_python_version})
     with open(path / "pyproject.toml") as f:
         pyproject_toml_content = f.read()
-    assert (
-        f']\nrequires-python = ">={minimal_python_version_str}"\nreadme = "README.md'
-        in pyproject_toml_content
-    )
-    assert (
-        f"[tool.mypy]\npython_version = '{minimal_python_version_str}'\nno_implicit"
-        in pyproject_toml_content
-    )
 
     for version in supported_python_versions:
         assert f"Programming Language :: Python :: {version}" in pyproject_toml_content

@@ -16,7 +16,11 @@ def update_workflow_actions(file_path: Path):
         else:
             action_with_rest = line.split(":")[1].strip()
             action, current_sha_with_version = action_with_rest.split("@")
-            current_sha, current_version = current_sha_with_version.split("#")
+            try:
+                current_sha, current_version = current_sha_with_version.split("#")
+            except ValueError:
+                current_sha = ""
+                current_version = current_sha_with_version
             current_sha = current_sha.strip()
             current_version = current_version.strip()
             new_version, new_sha = get_latest_github_tag(action)

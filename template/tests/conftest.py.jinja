@@ -1,7 +1,10 @@
-import pytest
+"""Holds fixtures and configuration for the test suite."""
 
+import pytest
 from panel.config import panel_extension
-from panel.io.reload import _local_modules, _modules, _watched_files
+from panel.io.reload import _local_modules
+from panel.io.reload import _modules
+from panel.io.reload import _watched_files
 from panel.io.state import state
 from panel.theme import Design
 
@@ -17,24 +20,16 @@ optional_markers = {
 def pytest_addoption(parser):
     """Add extra command line options."""
     for marker, info in optional_markers.items():
-        parser.addoption(
-            f"--{marker}", action="store_true", default=False, help=info["help"]
-        )
-    parser.addoption(
-        "--repeat", action="store", help="Number of times to repeat each test"
-    )
+        parser.addoption(f"--{marker}", action="store_true", default=False, help=info["help"])
+    parser.addoption("--repeat", action="store", help="Number of times to repeat each test")
 
 
 def pytest_configure(config):
     """Add extra markers."""
     for marker, info in optional_markers.items():
-        config.addinivalue_line(
-            "markers", "{}: {}".format(marker, info["marker-descr"])
-        )
+        config.addinivalue_line("markers", "{}: {}".format(marker, info["marker-descr"]))
 
-    config.addinivalue_line(
-        "markers", "internet: mark test as requiring an internet connection"
-    )
+    config.addinivalue_line("markers", "internet: mark test as requiring an internet connection")
 
 
 @pytest.fixture(autouse=True)
@@ -45,8 +40,7 @@ def module_cleanup():
 
     to_reset = list(panel_extension._imports.values())
     _default_resolver._known_models = {
-        name: model for name, model in _default_resolver._known_models.items()
-        if not any(model.__module__.startswith(tr) for tr in to_reset)
+        name: model for name, model in _default_resolver._known_models.items() if not any(model.__module__.startswith(tr) for tr in to_reset)
     }
     ReactiveMetaBase._loaded_extensions = set()
 
