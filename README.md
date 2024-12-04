@@ -49,7 +49,7 @@ On your GitHub repo's **About** section in the sidebar, be sure to add the link 
 
 ![image](https://github.com/user-attachments/assets/69d70fee-ec96-47bb-87df-08f866b61f5f)
 
-https://<github-user>.github.io/<panel-extension-name>/
+`https://<github-user>.github.io/<panel-extension-name>/`
 
 If your docs page is missing a sidebar, remember to add imports to `src/__init__.py` and include them in `__all__`.
 
@@ -66,6 +66,10 @@ Once you've populated the template, you can release to PyPI by creating a tag!
 ![image](https://github.com/user-attachments/assets/970fe011-2ca4-4018-b541-478ac76d3185)
 
 ![image](https://github.com/user-attachments/assets/374cd1ec-b1ea-4aef-b1a7-b2818660b0e8)
+
+### Step 6 - Customize the Docs
+
+The docs page is served with [`mkdocstrings`](https://mkdocstrings.github.io/python/) and can be configured in the root's `mkdocs.yml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) to see available options.
 
 ## Updating the Template
 
