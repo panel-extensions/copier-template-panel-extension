@@ -25,6 +25,12 @@ To create a new Panel extension:
 pixi exec --spec copier --spec ruamel.yaml -- copier copy --trust https://github.com/panel-extensions/copier-template-panel-extension <panel-extension-name>
 ```
 
+Or, to use a specific branch of `copier-template-panel-extension`, additionally specify `vcs-ref`:
+
+```bash
+pixi exec --spec copier --spec ruamel.yaml -- copier copy --trust https://github.com/panel-extensions/copier-template-panel-extension <panel-extension-name> --vcs-ref <branch_name>
+```
+
 ### Step 2 - Create and Add Remote Repository
 
 Go to Github and create your repository with the <panel-extension-name>. Then set the remote:
