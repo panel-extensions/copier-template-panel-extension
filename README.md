@@ -69,7 +69,7 @@ Once you've populated the template, you can release to PyPI by creating a tag!
 
 ### Step 6 - Customize the Docs
 
-The docs page is served with [`mkdocstrings`]() and can be configured in the root's `mkdocs.yml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) to see available options.
+The docs page is served with [`mkdocstrings`](https://mkdocstrings.github.io/python/) and can be configured in the root's `mkdocs.yml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) to see available options.
 
 ## Updating the Template
 
