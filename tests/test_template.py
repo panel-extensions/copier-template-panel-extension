@@ -6,7 +6,9 @@ from .utils import change_directory, git_init_add, remove_pixi_env_vars
 
 
 def test_generation(generated_project, project_slug):
-    assert (generated_project / "src" / project_slug.replace("-", "_") / "__init__.py").exists()
+    assert (
+        generated_project / "src" / project_slug.replace("-", "_") / "__init__.py"
+    ).exists()
     readme = (generated_project / "README.md").read_text()
     assert (
         f"https://img.shields.io/github/actions/workflow/status/LandoCalrissian/{project_slug}/ci.yml"
@@ -44,9 +46,7 @@ def test_add_autobump_workflow(generate_project, add_autobump_workflow):
     ).exists() == add_autobump_workflow
 
 
-@pytest.mark.parametrize(
-    "minimal_python_version", ["py310", "py311", "py312"]
-)
+@pytest.mark.parametrize("minimal_python_version", ["py310", "py311", "py312"])
 def test_minimal_python_version(generate_project, minimal_python_version: str):
     minimal_python_version_str = minimal_python_version.replace("py", "").replace(
         "3", "3."
