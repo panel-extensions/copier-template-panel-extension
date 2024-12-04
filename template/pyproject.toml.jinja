@@ -47,8 +47,8 @@ classifiers = [
 ]
 
 dependencies = [
-    'panel >=1.5.0',
-    'packaging',
+    "packaging",
+    "panel >=1.5.0",
 ]
 
 [project.urls]
@@ -57,15 +57,15 @@ Source = "{{ github_url }}"
 
 [project.optional-dependencies]
 dev = [
-    'watchfiles',
-    'mkdocs',
-    'mkdocs-material',
-    'mkdocstrings[python]',
-    'pytest',
-    'pytest-asyncio',
-    'pytest-rerunfailures',
-    'pytest-xdist',
-
+    "mkdocs-material",
+    "mkdocs",
+    "mkdocstrings[python]",
+    "pre-commit",
+    "pytest-asyncio",
+    "pytest-rerunfailures",
+    "pytest-xdist",
+    "pytest",
+    "watchfiles",
 ]
 mypy = [
     "mypy",
@@ -93,6 +93,8 @@ fix = true
 
 [tool.ruff.lint]
 ignore = [
+    "D203", # one-blank-line-before-class and `no-blank-line-before-class` (D211) are incompatible.
+    "D212", # multi-line-summary-first-line. Alternative is to ignore D213 `multi-line-summary-second-line
     "E402",  # Module level import not at top of file
     "E712",  # Avoid equality comparisons to True
     "E731",  # Do not assign a lambda expression, use a def
@@ -101,6 +103,7 @@ ignore = [
 ]
 select = [
     "B",    # flake8-bugbear
+    "D",    # pydocstyle
     "E",    # pycodestyle errors
     "F",    # pyflakes
     "W",    # pycodestyle warnings
@@ -119,6 +122,11 @@ select = [
     "UP036",
 ]
 
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+[tool.ruff.lint.isort]
+force-single-line = true
+
 [tool.pytest.ini_options]
 addopts = "--pyargs --doctest-ignore-import-errors --color=yes"
 norecursedirs = "doc .git dist build _build .ipynb_checkpoints examples"
@@ -133,13 +141,6 @@ filterwarnings = [
     "ignore::UserWarning",
 ]
 testpaths = ["tests"]
-
-[tool.isort]
-force_grid_wrap = 4
-multi_line_output = 5
-combine_as_imports = true
-lines_between_types = 1
-include_trailing_comma = true
 
 [tool.mypy]
 python_version = '{{ minimal_python_version[2:].replace('3', '3.') }}'

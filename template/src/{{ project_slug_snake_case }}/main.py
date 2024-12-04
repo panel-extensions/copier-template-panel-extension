@@ -1,1 +1,1 @@
-import panel as pn  # noqa: F401
+"""Main module."""

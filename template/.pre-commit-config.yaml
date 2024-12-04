@@ -14,15 +14,18 @@ repos:
         exclude: \.min\.js$
       - id: trailing-whitespace
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.7.0
+    rev: v0.8.0
     hooks:
+      # Run the import sorter.
       - id: ruff
-        files: panel/
-  - repo: https://github.com/pycqa/isort
-    rev: 5.13.2
-    hooks:
-      - id: isort
-        name: isort (python)
+        args: ["check", "--select", "I", "--fix"]
+        files: "^src/"
+      # Run the formatter.
+      - id: ruff-format
+        types_or: [ python, pyi ]
+      # Run the linter.
+      - id: ruff
+        args: [ --fix ]
   - repo: https://github.com/hoxbro/clean_notebook
     rev: v0.1.15
     hooks:
@@ -46,6 +49,11 @@ repos:
     hooks:
       - id: oxipng
         stages: [manual]
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.13.0
+    hooks:
+      - id: mypy
+        additional_dependencies: [panel>=1.5.0]
   - repo: https://github.com/pre-commit/mirrors-eslint
     rev: v9.13.0
     hooks:
