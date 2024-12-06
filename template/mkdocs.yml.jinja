@@ -4,12 +4,25 @@ site_author: "{{ author_name }}"
 
 repo_url: {{ github_url }}
 repo_name: {{ github_user }}/{{ project_slug }}
+edit_uri: edit/main/docs/
 
 theme:
     name: material
     logo: 'assets/logo.svg'
     features:
+        - announce.dismiss
+        - content.action.edit
+        - content.action.view
+        - content.code.annotate
         - content.code.copy
+        - content.tooltips
+        - navigation.footer
+        - navigation.indexes
+        - navigation.sections
+        - navigation.top
+        - search.highlight
+        - search.suggest
+        - toc.follow
     palette:
         # Palette toggle for light mode
         - media: "(prefers-color-scheme: light)"
