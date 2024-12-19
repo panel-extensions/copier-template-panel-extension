@@ -51,8 +51,24 @@ markdown_extensions:
         custom_checkbox: true
     - pymdownx.inlinehilite
     - pymdownx.snippets
-    - pymdownx.superfences
     - admonition
+    - pymdownx.superfences:
+        custom_fences:
+          - name: python
+            class: 'highlight'
+            validator: !!python/name:mkdocs_pycafe.validator
+            format: !!python/object/apply:mkdocs_pycafe.formatter
+              kwds:
+                type: panel
+                requirements: |
+                  # Add any other requirements here
+                  # see https://mkdocs.py.cafe/en/latest/ for more info
+                  panel
+                  {{ project_slug_snake_case }}
+                link_text: |
+                  <img src="https://py.cafe/logos/pycafe_logo.png" style="height: 24px"> **Run and edit this code in Py.Cafe**
+    - pymdownx.snippets:
+        url_download: true
 
 plugins:
   - search
@@ -73,6 +89,7 @@ watch:
 
 nav:
     - Home: index.md
+    - Examples: examples.md
     - Reference: reference/{{ project_slug_snake_case }}.md
 
 extra:
