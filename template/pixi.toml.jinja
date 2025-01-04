@@ -81,8 +81,11 @@ depends_on = ["_install-ui"]
 [feature.docs.dependencies]
 mkdocs = "*"
 mkdocs-material = "*"
-
 mkdocstrings-python = "*"
+
+[feature.docs.pypi-dependencies]
+mkdocs-pycafe = "*"
+
 [feature.docs.tasks]
 docs = "mkdocs serve"
 docs-build = "mkdocs build"
