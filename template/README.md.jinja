@@ -5,7 +5,7 @@
 [![pypi-version](https://img.shields.io/pypi/v/{{ project_slug }}.svg?logo=pypi&logoColor=white&style=flat-square)](https://pypi.org/project/{{ project_slug }})
 [![python-version](https://img.shields.io/pypi/pyversions/{{ project_slug }}?logoColor=white&logo=python&style=flat-square)](https://pypi.org/project/{{ project_slug }})
 
-{%- if project_short_description %}
+{% if project_short_description %}
 {{ project_short_description }}
 {%- endif %}
 
@@ -56,7 +56,8 @@ pixi run postinstall
 pixi run test
 ```
 
-This repository is based on [copier-template-panel-extension](https://github.com/panel-extensions/copier-template-panel-extension).
+This repository is based on [copier-template-panel-extension](https://github.com/panel-extensions/copier-template-panel-extension) (you can create your own Panel extension with it)!
+
 To update to the latest template version run:
 
 ```bash
