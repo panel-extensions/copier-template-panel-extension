@@ -42,7 +42,7 @@ git remote add origin https://github.com/<github-user>/<panel-extension-name>.gi
 The push your new repository
 
 ```bash
-git push --set-upstream origin main
+pre-commit install && git push --set-upstream origin main
 ```
 
 ### Step 3 - Set Up GitHub Pages Docs
