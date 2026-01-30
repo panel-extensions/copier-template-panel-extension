@@ -1,5 +1,5 @@
 # Examples
-
+{% if extension_type == 'panel' %}
 ```python
 import panel as pn
 pn.extension()
@@ -11,3 +11,11 @@ def apply_square(x):
 
 pn.Row(x_slider, pn.bind(apply_square, x_slider))
 ```
+{%- else %}
+```python
+import lumen.ai as lmai
+
+explorer = lmai.ExplorerUI()
+explorer.servable()
+```
+{%- endif %}

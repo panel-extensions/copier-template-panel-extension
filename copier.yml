@@ -4,17 +4,19 @@ _preserve_symlinks: True
 _min_copier_version: "9.3.1"
 
 # questions
+extension_type:
+  type: str
+  help: What type of extension are you building?
+  choices:
+    Panel: panel
+    Lumen: lumen
+  default: panel
+
 project_slug:
   type: str
   help: What is your project slug (i.e. pypi package name)?
-  placeholder: panel-<your_extension_name>
-  validator: >-
-    {% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}
-    The project slug should not contain underscores, spaces or dots.
-    {% endif %}
-    {% if not project_slug.startswith('panel-') %}
-    The project slug should start with `panel-`.
-    {% endif %}
+  placeholder: "{{ extension_type }}-<your_extension_name>"
+  validator: "{% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}The project slug should not contain underscores, spaces or dots.{% endif %}{% if extension_type == 'panel' and not project_slug.startswith('panel-') %}The project slug should start with `panel-`.{% endif %}{% if extension_type == 'lumen' and not project_slug.startswith('lumen-') %}The project slug should start with `lumen-`.{% endif %}"
 
 project_slug_snake_case:
   type: str
@@ -24,11 +26,11 @@ project_slug_snake_case:
 project_short_description:
   type: str
   help: Enter a short description.
-  placeholder: Extends HoloViz Panel with a <your_extension_name> pane/widget/...
+  placeholder: "Extends HoloViz {{ 'Panel' if extension_type == 'panel' else 'Lumen' }} with a <your_extension_name> {{ 'pane/widget/...' if extension_type == 'panel' else 'source/agent/...' }}"
 
 github_user:
   type: str
-  default: panel-extensions
+  default: "{{ 'panel-extensions' if extension_type == 'panel' else 'holoviz' }}"
   help: What is your GitHub username (used for CODEOWNERS)?
 
 author_name:
@@ -43,10 +45,7 @@ github_url:
   type: str
   help: What is the GitHub url of this project?
   default: https://github.com/{{ github_user }}/{{ project_slug }}
-  validator: >-
-    {% if not github_url.startswith('https://github.com/') or github_url.endswith('.git') %}
-    The GitHub URL should start with `https://github.com/` and not end with `.git`, for example `https://github.com/LandoCalrissian/python-project`.
-    {% endif %}
+  validator: "{% if not github_url.startswith('https://github.com/') or github_url.endswith('.git') %}The GitHub URL should start with `https://github.com/` and not end with `.git`, for example `https://github.com/LandoCalrissian/python-project`.{% endif %}"
 
 docs_url:
   type: str
@@ -61,7 +60,8 @@ minimal_python_version:
     - py311
     - py312
     - py313
-  default: py310
+  default: "{{ 'py311' if extension_type == 'lumen' else 'py310' }}"
+  validator: "{% if extension_type == 'lumen' and minimal_python_version == 'py310' %}Lumen requires Python >= 3.11. Please select py311 or higher.{% endif %}"
 
 minimal_python_version_sortable:
   type: str

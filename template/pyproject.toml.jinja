@@ -48,7 +48,11 @@ classifiers = [
 
 dependencies = [
     "packaging",
+{%- if extension_type == 'panel' %}
     "panel >=1.5.0",
+{%- else %}
+    "lumen >=1.0.0",
+{%- endif %}
 ]
 
 [project.urls]
@@ -70,6 +74,11 @@ mypy = [
     "mypy",
     "types-requests",
     "typing-extensions",
+{%- if extension_type == 'panel' %}
+    "panel>=1.5.0",
+{%- else %}
+    "lumen>=1.0.0",
+{%- endif %}
 ]
 
 [tool.ruff]
