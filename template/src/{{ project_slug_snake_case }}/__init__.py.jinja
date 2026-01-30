@@ -2,9 +2,11 @@
 
 import importlib.metadata
 import warnings
-
+{% if extension_type == 'panel' %}
 from {{ project_slug_snake_case }}.main import create_app
-
+{% else %}
+from {{ project_slug_snake_case }}.main import create_explorer
+{% endif %}
 try:
     __version__ = importlib.metadata.version(__name__)
 except importlib.metadata.PackageNotFoundError as e:  # pragma: no cover
@@ -13,5 +15,9 @@ except importlib.metadata.PackageNotFoundError as e:  # pragma: no cover
 
 __all__: list[str] = [
     "__version__",
+{%- if extension_type == 'panel' %}
     "create_app",
+{%- else %}
+    "create_explorer",
+{%- endif %}
 ]

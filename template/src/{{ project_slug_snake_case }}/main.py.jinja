@@ -1,5 +1,5 @@
-"""Main module for the Panel application."""
-
+"""Main module for the {{ 'Panel' if extension_type == 'panel' else 'Lumen' }} application."""
+{% if extension_type == 'panel' %}
 import panel as pn
 
 
@@ -28,3 +28,26 @@ def create_app() -> pn.Row:
 
 if __name__ == "__main__":
     create_app().servable()
+{% else %}
+import lumen.ai as lmai
+
+
+def create_explorer() -> lmai.ExplorerUI:
+    """Create a Lumen AI Explorer.
+
+    Returns
+    -------
+    lmai.ExplorerUI
+        A configured Lumen AI Explorer instance.
+
+    Examples
+    --------
+    >>> explorer = create_explorer()
+    >>> explorer.servable()
+    """
+    return lmai.ExplorerUI()
+
+
+if __name__ == "__main__":
+    create_explorer().servable()
+{% endif %}

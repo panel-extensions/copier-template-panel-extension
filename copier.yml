@@ -4,16 +4,27 @@ _preserve_symlinks: True
 _min_copier_version: "9.3.1"
 
 # questions
+extension_type:
+  type: str
+  help: What type of extension are you building?
+  choices:
+    Panel: panel
+    Lumen: lumen
+  default: panel
+
 project_slug:
   type: str
   help: What is your project slug (i.e. pypi package name)?
-  placeholder: panel-<your_extension_name>
+  placeholder: "{{ extension_type }}-<your_extension_name>"
   validator: >-
     {% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}
     The project slug should not contain underscores, spaces or dots.
     {% endif %}
-    {% if not project_slug.startswith('panel-') %}
+    {% if extension_type == 'panel' and not project_slug.startswith('panel-') %}
     The project slug should start with `panel-`.
+    {% endif %}
+    {% if extension_type == 'lumen' and not project_slug.startswith('lumen-') %}
+    The project slug should start with `lumen-`.
     {% endif %}
 
 project_slug_snake_case:
@@ -24,11 +35,11 @@ project_slug_snake_case:
 project_short_description:
   type: str
   help: Enter a short description.
-  placeholder: Extends HoloViz Panel with a <your_extension_name> pane/widget/...
+  placeholder: "Extends HoloViz {{ 'Panel' if extension_type == 'panel' else 'Lumen' }} with a <your_extension_name> {{ 'pane/widget/...' if extension_type == 'panel' else 'source/agent/...' }}"
 
 github_user:
   type: str
-  default: panel-extensions
+  default: "{{ 'panel-extensions' if extension_type == 'panel' else 'holoviz' }}"
   help: What is your GitHub username (used for CODEOWNERS)?
 
 author_name:
