@@ -28,7 +28,7 @@ def create_app() -> pn.Row:
 
 if __name__ == "__main__":
     create_app().servable()
-{% else %}
+{%- else %}
 import lumen.ai as lmai
 
 
@@ -50,4 +50,4 @@ def create_explorer() -> lmai.ExplorerUI:
 
 if __name__ == "__main__":
     create_explorer().servable()
-{% endif %}
+{%- endif %}

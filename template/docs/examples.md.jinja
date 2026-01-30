@@ -11,11 +11,11 @@ def apply_square(x):
 
 pn.Row(x_slider, pn.bind(apply_square, x_slider))
 ```
-{% else %}
+{%- else %}
 ```python
 import lumen.ai as lmai
 
 explorer = lmai.ExplorerUI()
 explorer.servable()
 ```
-{% endif %}
+{%- endif %}

@@ -68,11 +68,13 @@ minimal_python_version:
   type: str
   help: What is the minimal Python version you want to support?
   choices:
+{%- if extension_type == 'panel' %}
     - py310
+{%- endif %}
     - py311
     - py312
     - py313
-  default: py310
+  default: "{{ 'py311' if extension_type == 'lumen' else 'py310' }}"
 
 minimal_python_version_sortable:
   type: str
