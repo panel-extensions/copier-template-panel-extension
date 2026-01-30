@@ -1,0 +1,116 @@
+[project]
+site_name = "{{ project_slug }}"
+site_description = "{{ project_short_description }}"
+site_author = "{{ author_name }}"
+repo_url = "{{ github_url }}"
+repo_name = "{{ github_user }}/{{ project_slug }}"
+edit_uri = "edit/main/docs/"
+nav = [
+  {"Home" = "index.md"},
+  {"Examples" = "examples.md"},
+  {"Reference" = "reference/{{ project_slug_snake_case }}.md"}
+]
+
+# Theme configuration
+[project.theme]
+logo = "assets/logo.svg"
+features = [
+  "announce.dismiss",
+  "content.action.edit",
+  "content.action.view",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.indexes",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.instant.progress",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+  "search.share",
+  "search.suggest",
+  "toc.follow"
+]
+
+# Color palette - light mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+primary = "white"
+accent = "blue"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-7"
+name = "Switch to dark mode"
+
+# Color palette - dark mode
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+primary = "black"
+accent = "blue"
+
+[project.theme.palette.toggle]
+icon = "material/brightness-4"
+name = "Switch to light mode"
+
+# Markdown extensions
+[project.markdown_extensions.toc]
+permalink = true
+
+[project.markdown_extensions.pymdownx.highlight]
+anchor_linenums = true
+
+[project.markdown_extensions.pymdownx.tasklist]
+custom_checkbox = true
+
+[project.markdown_extensions.pymdownx.inlinehilite]
+
+[project.markdown_extensions.pymdownx.snippets]
+url_download = true
+
+[project.markdown_extensions.admonition]
+
+[project.markdown_extensions.pymdownx.superfences]
+
+# Plugins
+[project.plugins]
+search = {}
+
+[project.plugins.mkdocstrings.handlers.python]
+paths = ["src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+docstring_style = "numpy"
+show_if_no_docstring = true
+filters = ["!^_"]
+
+# Extra configuration
+[project.extra]
+
+[[project.extra.social]]
+icon = "fontawesome/brands/github"
+link = "https://github.com/{{ github_user }}"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/twitter"
+link = "https://twitter.com/panel_org"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/python"
+link = "https://pypi.org/project/{{ project_slug }}"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/discourse"
+link = "https://discourse.holoviz.org/"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/discord"
+link = "https://discord.com/invite/rb6gPXbdAr"
+
+[[project.extra.social]]
+icon = "fontawesome/brands/linkedin"
+link = "https://www.linkedin.com/company/panel-org"
