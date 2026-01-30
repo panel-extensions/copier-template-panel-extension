@@ -16,16 +16,7 @@ project_slug:
   type: str
   help: What is your project slug (i.e. pypi package name)?
   placeholder: "{{ extension_type }}-<your_extension_name>"
-  validator: >-
-    {% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}
-    The project slug should not contain underscores, spaces or dots.
-    {% endif %}
-    {% if extension_type == 'panel' and not project_slug.startswith('panel-') %}
-    The project slug should start with `panel-`.
-    {% endif %}
-    {% if extension_type == 'lumen' and not project_slug.startswith('lumen-') %}
-    The project slug should start with `lumen-`.
-    {% endif %}
+  validator: "{% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}The project slug should not contain underscores, spaces or dots.{% endif %}{% if extension_type == 'panel' and not project_slug.startswith('panel-') %}The project slug should start with `panel-`.{% endif %}{% if extension_type == 'lumen' and not project_slug.startswith('lumen-') %}The project slug should start with `lumen-`.{% endif %}"
 
 project_slug_snake_case:
   type: str
@@ -54,10 +45,7 @@ github_url:
   type: str
   help: What is the GitHub url of this project?
   default: https://github.com/{{ github_user }}/{{ project_slug }}
-  validator: >-
-    {% if not github_url.startswith('https://github.com/') or github_url.endswith('.git') %}
-    The GitHub URL should start with `https://github.com/` and not end with `.git`, for example `https://github.com/LandoCalrissian/python-project`.
-    {% endif %}
+  validator: "{% if not github_url.startswith('https://github.com/') or github_url.endswith('.git') %}The GitHub URL should start with `https://github.com/` and not end with `.git`, for example `https://github.com/LandoCalrissian/python-project`.{% endif %}"
 
 docs_url:
   type: str
@@ -68,13 +56,12 @@ minimal_python_version:
   type: str
   help: What is the minimal Python version you want to support?
   choices:
-{%- if extension_type == 'panel' %}
     - py310
-{%- endif %}
     - py311
     - py312
     - py313
   default: "{{ 'py311' if extension_type == 'lumen' else 'py310' }}"
+  validator: "{% if extension_type == 'lumen' and minimal_python_version == 'py310' %}Lumen requires Python >= 3.11. Please select py311 or higher.{% endif %}"
 
 minimal_python_version_sortable:
   type: str
