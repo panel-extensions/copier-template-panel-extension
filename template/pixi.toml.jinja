@@ -79,16 +79,12 @@ cmd = 'pytest tests/ui --ui --browser chromium -n logical --dist loadgroup --rer
 depends-on = ["_install-ui"]
 
 [feature.docs.dependencies]
-mkdocs = "*"
-mkdocs-material = "*"
+zensical = "*"
 mkdocstrings-python = "*"
 
-[feature.docs.pypi-dependencies]
-mkdocs-pycafe = "*"
-
 [feature.docs.tasks]
-docs = "mkdocs serve"
-docs-build = "mkdocs build"
+docs = "zensical serve"
+docs-build = "zensical build"
 
 [environments]
 default = ["test"]

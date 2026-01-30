@@ -1,6 +1,6 @@
 # Examples
 
-```{.python pycafe-embed pycafe-embed-style="border: 1px solid #e6e6e6; border-radius: 8px;" pycafe-embed-width="100%" pycafe-embed-height="400px" pycafe-embed-scale="1.0"}
+```python
 import panel as pn
 pn.extension()
 
