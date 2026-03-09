@@ -102,13 +102,34 @@ pixi install
 pixi run pre-commit-install
 ```
 
-### Step 4 - Run the Tests
+### Step 4 - Understand the Template Structure
+
+This repository is a [Copier](https://copier.readthedocs.io/en/stable/) template. The key files are:
+
+- **`copier.yml`**: Defines the template questions (e.g. `project_slug`, `author_name`) and configuration. See the [Copier docs on configuring a template](https://copier.readthedocs.io/en/stable/configuring/) for details.
+- **`template/`**: Contains the files that get copied and rendered into each new project. Files ending in `.jinja` are rendered using [Jinja2](https://jinja.palletsprojects.com/) with answers from `copier.yml` as variables.
+- **`tasks/`**: Contains post-generation scripts run by Copier after copying the template.
+- **`migrations/`**: Contains migration scripts used when updating a project to a newer template version.
+
+### Step 5 - Test the Template Locally
+
+To generate a temporary project from your local changes and inspect the output:
+
+```bash
+pixi run generate-temp-repo
+```
+
+This copies the template using your current working tree (`--vcs-ref=HEAD`) into a temporary directory and prints its path. You can then inspect or manually test the generated project.
+
+### Step 6 - Run the Tests
+
+The test suite generates projects from the template and validates the output:
 
 ```bash
 pixi run test
 ```
 
-### Step 5 - Run the Linters
+### Step 7 - Run the Linters
 
 ```bash
 pixi run -e lint pre-commit-run
