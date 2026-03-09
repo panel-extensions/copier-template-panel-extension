@@ -77,6 +77,43 @@ Once you've populated the template, you can release to PyPI by creating a tag!
 
 The docs page is served with [`mkdocstrings`](https://mkdocstrings.github.io/python/) and can be configured in the root's `mkdocs.yml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) to see available options.
 
+## Contributing
+
+We welcome contributions to this template! To get started:
+
+### Step 1 - Clone the Repository
+
+```bash
+git clone https://github.com/panel-extensions/copier-template-panel-extension
+cd copier-template-panel-extension
+```
+
+### Step 2 - Install Dependencies
+
+This project uses [Pixi](https://pixi.sh) to manage dependencies. Install them with:
+
+```bash
+pixi install
+```
+
+### Step 3 - Install Pre-commit Hooks
+
+```bash
+pixi run pre-commit-install
+```
+
+### Step 4 - Run the Tests
+
+```bash
+pixi run test
+```
+
+### Step 5 - Run the Linters
+
+```bash
+pixi run -e lint pre-commit-run
+```
+
 ## Updating the Template
 
 To update to the latest template version run:
