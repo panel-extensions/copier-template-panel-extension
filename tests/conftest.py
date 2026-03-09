@@ -49,7 +49,7 @@ def generate_project(tmp_path):
     return _generate
 
 
-@pytest.fixture(params=["panel-project", "panel-my-project"])
+@pytest.fixture(params=["panel-project", "panel-my-project", "holoviz-mcp"])
 def project_slug(request):
     return request.param
 
