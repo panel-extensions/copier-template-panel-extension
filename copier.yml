@@ -16,7 +16,7 @@ project_slug:
   type: str
   help: What is your project slug (i.e. pypi package name)?
   placeholder: "{{ extension_type }}-<your_extension_name>"
-  validator: "{% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}The project slug should not contain underscores, spaces or dots.{% endif %}{% if extension_type == 'panel' and not project_slug.startswith('panel-') %}The project slug should start with `panel-`.{% endif %}{% if extension_type == 'lumen' and not project_slug.startswith('lumen-') %}The project slug should start with `lumen-`.{% endif %}"
+  validator: "{% if '_' in project_slug or ' ' in project_slug or '.' in project_slug %}The project slug should not contain underscores, spaces or dots.{% endif %}"
 
 project_slug_snake_case:
   type: str
