@@ -7,7 +7,7 @@ This template comes preconfigured with essential tools and best practices to hel
 * [X] **Hatch-based Packaging**: Managed by [Hatch](https://hatch.pypa.io/latest/install/) for streamlined dependency management and build processes.
 * [X] **Linting and Code Quality with [`ruff`](https://github.com/charliermarsh/ruff)**: A fast and configurable linting tool for maintaining consistent code style.
 * [X] **Testing with [`pytest`](https://github.com/pytest-dev/pytest)**: Includes support for async tests and thorough configuration for reliable testing.
-* [X] **Documentation Generation**: Leverages [Material for MkDocs](https://squidfunk.github.io/mkdocs-material/) for beautiful documentation and [mkdocstrings](https://mkdocstrings.github.io/) for automatic API documentation.
+* [X] **Documentation Generation**: Leverages [Zensical](https://zensical.com/) for beautiful documentation and [mkdocstrings](https://mkdocstrings.github.io/) for automatic API documentation.
 * [X] **GitHub Actions CI/CD**: Preconfigured workflows for automated testing, building, and publishing.
 * [X] **Pixi Package Management**: Integrated with Pixi for efficient and reproducible environment management.
 * [X] **Update Flexibility**: Easily update your project to newer template versions with minimal disruption.
@@ -75,7 +75,7 @@ Once you've populated the template, you can release to PyPI by creating a tag!
 
 ### Step 6 - Customize the Docs
 
-The docs page is served with [`mkdocstrings`](https://mkdocstrings.github.io/python/) and can be configured in the root's `mkdocs.yml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) to see available options.
+The docs page is served with [Zensical](https://zensical.com/) and [`mkdocstrings`](https://mkdocstrings.github.io/python/). Configuration lives in the root's `zensical.toml` file. See [mkdocstrings usage](https://mkdocstrings.github.io/python/usage/) for available API documentation options.
 
 ## Contributing
 
