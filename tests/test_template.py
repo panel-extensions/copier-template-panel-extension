@@ -11,7 +11,7 @@ def test_generation(generated_project, project_slug):
     ).exists()
     readme = (generated_project / "README.md").read_text()
     assert (
-        f"https://img.shields.io/github/actions/workflow/status/LandoCalrissian/{project_slug}/ci.yml"
+        f"https://img.shields.io/github/actions/workflow/status/LandoCalrissian/{project_slug}/test.yaml"
         in readme
     )
 
@@ -42,7 +42,7 @@ def test_precommit(generated_project):
 def test_add_autobump_workflow(generate_project, add_autobump_workflow):
     path = generate_project({"add_autobump_workflow": add_autobump_workflow})
     assert (
-        path / ".github" / "workflows" / "update-lockfiles.yml"
+        path / ".github" / "workflows" / "update-lockfiles.yaml"
     ).exists() == add_autobump_workflow
 
 
@@ -75,8 +75,8 @@ def test_minimal_python_version(generate_project, minimal_python_version: str):
 
     with open(path / "pixi.toml") as f:
         pixi_toml = f.read()
-    with open(path / ".github" / "workflows" / "ci.yml") as f:
-        ci = f.read()
+    with open(path / ".github" / "workflows" / "test.yaml") as f:
+        test = f.read()
 
     for version in all_supported_python_versions:
         if version == minimal_python_version_str:
@@ -87,7 +87,7 @@ def test_minimal_python_version(generate_project, minimal_python_version: str):
     for version, env in zip(all_supported_python_versions, all_supported_python_envs):
         if version in supported_python_versions:
             assert env in pixi_toml
-            assert env in ci
+            assert env in test
         else:
             assert env not in pixi_toml
-            assert env not in ci
+            assert env not in test
