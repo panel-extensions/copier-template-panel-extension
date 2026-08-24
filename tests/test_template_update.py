@@ -36,7 +36,7 @@ def test_template_actions_update(tmp_path: Path):
 
 def test_actions_update(tmp_path):
     (tmp_path / "template/.github/workflows").mkdir(parents=True)
-    with open(tmp_path / "template/.github/workflows" / "test.yml", "w+") as f:
+    with open(tmp_path / "template/.github/workflows" / "test.yaml", "w+") as f:
         f.write(
             dedent(
                 """
@@ -53,7 +53,7 @@ def test_actions_update(tmp_path):
 
     update_project_workflows(tmp_path / "template/.github/workflows")
 
-    with open(tmp_path / "template/.github/workflows" / "test.yml") as f:
+    with open(tmp_path / "template/.github/workflows" / "test.yaml") as f:
         assert (
             f.read()
             == dedent(
